@@ -1,6 +1,7 @@
 {
-    "Version": "0.0.4",
+    "Version": "0.0.5",
     "Changes": [
+        "Fixed update system: binary path issue resolved",
         "Updated all dependencies to latest versions (gotgbot rc.34, gotgproto beta22)",
         "Fixed breaking API changes in gotgbot and gotgproto",
         "Fixed Python 3.14 asyncio compatibility in session_maker",

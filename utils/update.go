@@ -29,7 +29,7 @@ func DoUpdate(version string, chatId int64, msgId int) error {
 	if err := downloadUpdate(version); err != nil {
 		return err
 	}
-	return restart("giga", []string{}, 5, chatId, msgId, "Updated Successfully.")
+	return restart("./giga", []string{}, 5, chatId, msgId, "Updated Successfully.")
 }
 
 func refreshChangelog() error {
