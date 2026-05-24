@@ -1,13 +1,13 @@
 {
-    "Version": "0.0.6",
+    "Version": "0.0.7",
     "Changes": [
+        "Fixed permission denied error after build",
+        "Binary now automatically gets execute permissions (chmod 755)",
         "Changed update system to git pull + build (no more binary downloads!)",
         "Update now pulls latest code and builds from source",
         "Faster iteration for development",
         "No need to create GitHub releases for updates",
-        "Fixed update system: binary path issue resolved",
-        "Updated all dependencies to latest versions",
-        "Fixed breaking API changes",
+        "All dependencies updated to latest versions",
         "Improved stability and performance"
     ]
 }

@@ -1,13 +1,18 @@
 package utils
 
 import (
+	"os"
 	"os/exec"
 
 	git "github.com/go-git/go-git/v5"
 )
 
 func buildBinary() error {
-	return exec.Command("go", "build", ".").Run()
+	if err := exec.Command("go", "build", "-o", "giga", ".").Run(); err != nil {
+		return err
+	}
+	// Ensure binary has execute permissions
+	return os.Chmod("giga", 0755)
 }
 
 func buildWithClone(dir string) error {
