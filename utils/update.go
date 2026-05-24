@@ -14,21 +14,19 @@ import (
 )
 
 func DoUpdate(version string, chatId int64, msgId int) error {
-	// err := gitPull()
-	// if err != nil {
-	// 	buildWithClone(".")
-	// 	restart("giga", []string{}, 5, chatId, msgId, "Updated Successfully.")
-	// }
-	// err = buildBinary()
-	// if err != nil {
-	// 	return err
-	// }
+	// New update system: git pull + build
+	if err := gitPull(); err != nil {
+		return fmt.Errorf("failed to pull latest changes: %w", err)
+	}
+
+	if err := buildBinary(); err != nil {
+		return fmt.Errorf("failed to build binary: %w", err)
+	}
+
 	if err := refreshChangelog(); err != nil {
-		return err
+		return fmt.Errorf("failed to refresh changelog: %w", err)
 	}
-	if err := downloadUpdate(version); err != nil {
-		return err
-	}
+
 	return restart("./giga", []string{}, 5, chatId, msgId, "Updated Successfully.")
 }
 
