@@ -46,7 +46,7 @@ func sh(ctx *ext.Context, u *ext.Update) error {
 
 	err, out, errout := Shellout(strings.Join(cmd[1:], " "))
 	if err != nil {
-		logger.Println("error: %v\n", err)
+		logger.Printf("error: %v\n", err)
 	}
 	m := ""
 	if out != "" {

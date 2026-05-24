@@ -1,4 +1,12 @@
 {
-    "Version": "0.0.3",
-    "Changes": ["Okay"]
+    "Version": "0.0.4",
+    "Changes": [
+        "Updated all dependencies to latest versions (gotgbot rc.34, gotgproto beta22)",
+        "Fixed breaking API changes in gotgbot and gotgproto",
+        "Fixed Python 3.14 asyncio compatibility in session_maker",
+        "Changed update system to use hikari-work fork",
+        "Improved Redis configuration and setup",
+        "Added bot token configuration support",
+        "Enhanced error handling and stability"
+    ]
 }

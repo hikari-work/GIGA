@@ -1,5 +1,14 @@
 # GIGA Userbot Session String Generator
+import asyncio
 import sys
+
+# Fix for Python 3.10+ where get_event_loop() doesn't create a new loop automatically
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
 from pyrogram.client import Client
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession

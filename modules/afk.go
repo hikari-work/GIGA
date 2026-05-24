@@ -99,6 +99,6 @@ func checkAfk(ctx *ext.Context, u *ext.Update) error {
 	if afk.Reason != "" {
 		text.Plain("\nReason: ").Code(afk.Reason)
 	}
-	ctx.Reply(u, text.StoArray, nil)
+	ctx.Reply(u, ext.ReplyTextStyledTextArray(text.StoArray), nil)
 	return nil
 }

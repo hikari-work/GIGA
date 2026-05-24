@@ -33,7 +33,7 @@ func DoUpdate(version string, chatId int64, msgId int) error {
 }
 
 func refreshChangelog() error {
-	origin := "https://raw.githubusercontent.com/GigaUserbot/GIGA/dev/changelog.json"
+	origin := "https://raw.githubusercontent.com/hikari-work/GIGA/dev/changelog.json"
 	resp, err := http.Get(origin)
 	if err != nil {
 		return err
@@ -63,7 +63,7 @@ func downloadUpdate(version string) error {
 		return fmt.Errorf("failed to download update: %w", err)
 	}
 	url := fmt.Sprintf(
-		"https://github.com/GigaUserbot/GIGA/releases/download/v%s/giga_%s_%s_%s",
+		"https://github.com/hikari-work/GIGA/releases/download/v%s/giga_%s_%s_%s",
 		version, version, os, arch,
 	)
 	err = DownloadFile("giga", url)
@@ -101,7 +101,7 @@ func InitUpdate(l *logger.Logger) {
 
 func CheckChanges() (*Update, bool) {
 	var u Update
-	origin := "https://raw.githubusercontent.com/GigaUserbot/GIGA/dev/changelog.json"
+	origin := "https://raw.githubusercontent.com/hikari-work/GIGA/dev/changelog.json"
 	resp, err := http.Get(origin)
 	if err != nil {
 		return nil, false

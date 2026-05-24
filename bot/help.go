@@ -19,6 +19,7 @@ func helpInline(b *gotgbot.Bot, ctx *ext.Context) error {
 	query := ctx.InlineQuery
 	data := strings.Fields(query.Query)
 	if len(data) == 1 {
+		cacheTime := int64(1)
 		b.AnswerInlineQuery(query.Id, []gotgbot.InlineQueryResult{
 			&gotgbot.InlineQueryResultArticle{
 				Id:    query.Id,
@@ -32,7 +33,7 @@ func helpInline(b *gotgbot.Bot, ctx *ext.Context) error {
 				},
 			},
 		}, &gotgbot.AnswerInlineQueryOpts{
-			CacheTime: 1,
+			CacheTime: &cacheTime,
 		})
 		return ext.EndGroups
 	}
@@ -55,7 +56,7 @@ func helpCallback(b *gotgbot.Bot, ctx *ext.Context) error {
 			ReplyMarkup: gotgbot.InlineKeyboardMarkup{
 				InlineKeyboard: helpmaker.GetPageHelp(1),
 			},
-			DisableWebPagePreview: true,
+			LinkPreviewOptions: &gotgbot.LinkPreviewOptions{IsDisabled: true},
 		})
 		return ext.EndGroups
 	}
@@ -81,14 +82,14 @@ func helpCallback(b *gotgbot.Bot, ctx *ext.Context) error {
 		})
 	case "close":
 		b.EditMessageText("Help Menu Closed", &gotgbot.EditMessageTextOpts{
-			InlineMessageId:       query.InlineMessageId,
-			DisableWebPagePreview: true,
+			InlineMessageId:    query.InlineMessageId,
+			LinkPreviewOptions: &gotgbot.LinkPreviewOptions{IsDisabled: true},
 		})
 	default:
 		b.EditMessageText(helpmaker.GetModuleHelp(data[1]), &gotgbot.EditMessageTextOpts{
-			InlineMessageId:       query.InlineMessageId,
-			ParseMode:             helpmaker.GetParseMode(),
-			DisableWebPagePreview: true,
+			InlineMessageId:    query.InlineMessageId,
+			ParseMode:          helpmaker.GetParseMode(),
+			LinkPreviewOptions: &gotgbot.LinkPreviewOptions{IsDisabled: true},
 			ReplyMarkup: gotgbot.InlineKeyboardMarkup{
 				InlineKeyboard: [][]gotgbot.InlineKeyboardButton{
 					{{Text: "Back", CallbackData: helpmaker.HelpPrifex}, {Text: "Close", CallbackData: helpmaker.HelpPrifex + "close"}},
